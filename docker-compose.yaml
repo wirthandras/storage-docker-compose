@@ -4,6 +4,7 @@ services:
   storage-api:
     container_name: storage-api-1
     image: wirthandras/storage-api:master
+    restart: always
     ports:
       - "${STORAGE_PORT}:80"
     depends_on:
@@ -16,6 +17,7 @@ services:
   db:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: db-1
+    restart: always
     environment:
       SA_PASSWORD: ${SA_PASSWORD}
       ACCEPT_EULA: Y
