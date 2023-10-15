@@ -7,7 +7,7 @@ services:
     ports:
       - "${STORAGE_PORT}:80"
     depends_on:
-      - mssql
+      - db
     environment:
       ConnectionStrings__DefaultConnection: "Server=db,1433;Database=storage;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
     env_file:
