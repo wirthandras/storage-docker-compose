@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  storage-api:
+    container_name: storage-api-1
+    image: wirthandras/storage-api:master
+    ports:
+      - "${STORAGE_PORT}:80"
+    depends_on:
+      - mssql
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=db,1433;Database=storage;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+    env_file:
+      - .env
+  
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: db-1
+    environment:
+      SA_PASSWORD: ${SA_PASSWORD}
+      ACCEPT_EULA: Y
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:${DB_VOLUME}
+    env_file:
+      - .env
+
+volumes:
+  mssql_data:
+   
