@@ -11,6 +11,8 @@ services:
       - db
     environment:
       ConnectionStrings__DefaultConnection: "Server=db,1433;Database=storage;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+      Google__Audience: ${GOOGLE_AUDIENCE}
+      Cors__Origin: ${CORS_ORIGIN}
     env_file:
       - .env
   
